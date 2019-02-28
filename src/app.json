@@ -23,5 +23,14 @@
         "selectedIconPath": "/static/images/icon_test_active.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "我们将为您提供更好的服务"
+    }
+  },
+  "usingComponents": {
+    "van-toast": "/static/vant/toast/index",
+    "van-icon": "/static/vant/icon/index"
   }
 }

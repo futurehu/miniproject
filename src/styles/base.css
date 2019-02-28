@@ -1,0 +1,62 @@
+
+page,view {
+  font-size: 14px;
+}
+/* 条状灰色 */
+.bar-grey {
+  background-color: #f6f6f6;
+}
+/* 清除浮动造成的影响 */
+.clearfix::after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+/* 浮动 */
+.f-r {
+  float: right;
+}
+.f-l {
+  float: left;
+}
+/*******************flex样式****************************/
+.hw-box{ display:-webkit-box;display:-webkit-flex;display: flex;}
+/*******************flex****************************/
+.hw-flex-4 { -webkit-flex: 4;flex: 4;-webkit-box-flex: 4 }
+.hw-flex-3 { -webkit-flex: 3;flex: 3;-webkit-box-flex: 3 }
+.hw-flex-2 { -webkit-flex: 2;flex: 2;-webkit-box-flex: 2 }
+.hw-flex-1 { -webkit-flex: 1;flex: 1;-webkit-box-flex: 1 }
+/*************垂直方向左对齐********/
+.hw-ver-left{-webkit-align-items:flex-start;align-items:flex-start;}
+/*************水平方向左对齐********/
+.hw-ver-h-left{justify-content:flex-start;}
+/*************水平垂直居中********/
+.hw-ver{align-items:center;justify-content: center;}
+/*************垂直居中********/
+.hw-ver-v{align-items:center;}
+/*************水平居中********/
+.hw-ver-h{justify-content: center;}
+/*************换行********/
+.hw-wrap{flex-wrap:wrap}
+/*************换行，第一行在下方********/
+.hw-wrap-reverse{flex-wrap:wrap-reverse}
+/*************垂直排列********/
+.hw-col{flex-direction:column}
+/*************水平排列********/
+.hw-row{flex-direction:row}
+/*************每个项目两侧的间隔相等********/
+.hw-around{justify-content:space-around}
+/*************两端对齐********/
+.hw-between{justify-content:space-between}
+/*************子元素底对齐********/
+.hw-align-self-end{align-self:flex-end}
+/*************子元素倒叙********/
+.hw-end{justify-content:flex-end}
+/*************子元素倒叙********/
+.hw-align-content-start{align-content: flex-start;}
+/*************子元素分配剩余空间********/
+.hw-grow{flex-grow:1}
+.hw-flex-end{align-items:flex-end}
+/*******************flex样式结束****************************/

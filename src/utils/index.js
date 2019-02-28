@@ -1,9 +1,9 @@
-function formatNumber (n) {
+function formatNumber(n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
 }
 
-export function formatTime (date) {
+export function formatTime(date) {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
@@ -17,8 +17,16 @@ export function formatTime (date) {
 
   return `${t1} ${t2}`
 }
-
-export default {
-  formatNumber,
-  formatTime
+// 打开新窗口
+export function openWin (url) {
+  wx.navigateTo({url: url})
 }
+// 关闭当前页面，跳转到应用内的某个页面
+export function redirectTo (url) {
+  wx.redirectTo({url: url})
+}
+// 返回上一级窗口
+export function backBeaforWin () {
+  wx.navigateBack({delta: 1})
+}
+
