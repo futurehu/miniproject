@@ -36,9 +36,12 @@
         <swiper-item>
           低分评论
         </swiper-item>
+        <!-- 最新评论 -->
+        <swiper-item>
+          最新评论
+        </swiper-item>
       </block>
     </swiper>
-
   </div>
 </template>
 
