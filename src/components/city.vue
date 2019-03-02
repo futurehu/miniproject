@@ -7,15 +7,10 @@
       style="height:100vh"
     >
       <div class="current-city bar-grey">
-        <img
-          src="../../static/images/loc4.png"
-          alt=""
-        >
+        <img src="../../static/images/loc4.png" alt>
         <span>当前定位城市</span>
       </div>
-      <div class="local-city add-weight">
-        {{cur_city}}
-      </div>
+      <div class="local-city add-weight">{{cur_city}}</div>
       <div class="no-limitCity bar-grey">
         <ul>
           <li>不限城市</li>
@@ -26,23 +21,13 @@
         <ul>
           <li>热门城市</li>
           <li>
-            <span
-              v-for="(hotItem,index) in hot_list"
-              :key="index"
-            >{{hotItem.area_name}}</span>
-
+            <span v-for="(hotItem,index) in hot_list" :key="index">{{hotItem.area_name}}</span>
           </li>
         </ul>
       </div>
       <div class="city-list">
-        <div
-          v-for="(item,index) in allList"
-          :key="index"
-        >
-          <div
-            class="tag"
-            :id="item.initials"
-          >{{item.initials}}</div>
+        <div v-for="(item,index) in allList" :key="index">
+          <div class="tag" :id="item.initials">{{item.initials}}</div>
           <div class="detail-city">
             <ul>
               <li
@@ -58,13 +43,9 @@
     <!-- fixed 部分 -->
     <div class="word-fix">
       <ul>
-        <li
-          v-for="(item,i) in allList"
-          :key="i"
-        ><span
-            @click="clickWord(i,$event)"
-            :data-opt='item.initials'
-          >{{item.initials}}</span></li>
+        <li v-for="(item,i) in allList" :key="i">
+          <span @click="clickWord(i,$event)" :data-opt="item.initials">{{item.initials}}</span>
+        </li>
         <!--  :class="{textActive:i==checkIndex}" -->
       </ul>
     </div>
@@ -105,8 +86,8 @@ export default {
       this.$emit("changeCity", city);
     },
     async getCity() {
-      // console.log('this.toView',this.toView);
       let res = await this.$http(this.city_url, "post");
+      // console.log('resolve(res.data)',res);
       this.allList = res.result;
       this.hot_list = res.hot;
     }

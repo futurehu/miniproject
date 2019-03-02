@@ -7,40 +7,21 @@
       <span>最新(0)</span>
     </div>
     <!-- 不同tab下的评论 -->
-    <swiper
-      :duration="500"
-      style='height:100vh'
-    >
-      <block>
-        <!-- 全部评论 -->
-        <swiper-item>
-          <scroll-view
-            scroll-y
-            scroll-top="0"
-            style="height:100vh"
-          >
-            <div
-              class="comment-container"
-              v-for="(val,index) in allComments"
-              :key="index"
-            >
-              <Comment :comments='val'></Comment>
-            </div>
-          </scroll-view>
-        </swiper-item>
-        <!-- 晒图评论 -->
-        <swiper-item>
-          晒图评论
-        </swiper-item>
-        <!-- 低分评论 -->
-        <swiper-item>
-          低分评论
-        </swiper-item>
-        <!-- 最新评论 -->
-        <swiper-item>
-          最新评论
-        </swiper-item>
-      </block>
+    <swiper :duration="500" style="height:calc(94vh)">
+      <!-- 全部评论 -->
+      <swiper-item>
+        <scroll-view scroll-y scroll-top="0" style="height:calc(100vh)">
+          <div class="comment-container" v-for="(val,index) in allComments" :key="index">
+            <Comment :comments="val"></Comment>
+          </div>
+        </scroll-view>
+      </swiper-item>
+      <!-- 晒图评论 -->
+      <swiper-item>晒图评论</swiper-item>
+      <!-- 低分评论 -->
+      <swiper-item>低分评论</swiper-item>
+      <!-- 最新评论 -->
+      <swiper-item>最新评论</swiper-item>
     </swiper>
   </div>
 </template>

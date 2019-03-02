@@ -1,18 +1,9 @@
 <template>
   <div>
     <header>
-      <div
-        class="text"
-        @click="$openWin('/pages/chooseCity/chooseCity')"
-      >{{curCity}}</div>
-      <div
-        class="input"
-        @click="$openWin('/pages/search/search')"
-      >
-        <icon
-          type="search"
-          size="15"
-        />
+      <div class="text" @click="$openWin('/pages/chooseCity/chooseCity')">{{curCity}}</div>
+      <div class="input" @click="$openWin('/pages/search/search')">
+        <icon type="search" size="15"/>
         <span>搜索您需要的产品</span>
       </div>
     </header>
@@ -22,64 +13,36 @@
         indicator-dots="true"
         interval="5000"
         duration="500"
-        indicator-active-color='#ff4777'
+        indicator-active-color="#ff4777"
       >
-        <block
-          v-for="(item, index) in imgUrls"
-          :index="index"
-          :key="index"
-        >
+        <block v-for="(item, index) in imgUrls" :index="index" :key="index">
           <swiper-item>
-            <image
-              :src="item"
-              class="slide-image"
-              mode="aspectFill"
-            />
+            <image :src="item" class="slide-image" mode="aspectFill"></image>
           </swiper-item>
         </block>
       </swiper>
     </div>
     <div class="cate">
       <div>
-        <img
-          src="./images/1.png"
-          alt=""
-          srcset=""
-          @click="$openWin('/pages/detail/detail')"
-        >
+        <img src="./images/1.png" @click="$openWin('/pages/detail/detail')">
         <span>热门推荐</span>
       </div>
       <div>
-        <img
-          src="./images/2.png"
-          alt=""
-          srcset=""
-        >
+        <img src="./images/2.png">
         <span>1折专区</span>
       </div>
       <div>
-        <img
-          src="./images/3.png"
-          alt=""
-          srcset=""
-        >
+        <img src="./images/3.png">
         <span>商户入驻</span>
       </div>
       <div>
-        <img
-          src="./images/4.png"
-          alt=""
-          srcset=""
-        >
+        <img src="./images/4.png">
         <span>合作商户</span>
       </div>
     </div>
     <div class="line"></div>
     <div class="beauty-teach">
-      <scroll-view
-        scroll-x='true'
-        style="white-space: nowrap; display: flex"
-      >
+      <scroll-view scroll-x="true" style="white-space: nowrap; display: flex">
         <view>
           <img src="./images/block1.png">
         </view>
@@ -96,25 +59,14 @@
       <div>
         <view>
           <div class="before"></div>
-          <img
-            src="./images/cheap.png"
-            alt=""
-          >
+          <img src="./images/cheap.png" alt>
           <div class="after"></div>
         </view>
         <span>最新特价商品</span>
       </div>
     </div>
-    <i-button
-      type="primary"
-      @click="showPop"
-    >这是一个按钮</i-button>
-    <van-popup
-      :show="show"
-      position="bottom"
-      :overlay="true"
-      @close="onClose"
-    >
+    <i-button type="primary" @click="showPop">这是一个按钮</i-button>
+    <van-popup :show="show" position="bottom" :overlay="true" @close="onClose">
       <van-picker
         show-toolbar
         :columns="columns"
@@ -157,12 +109,6 @@ export default {
     ...mapMutations({
       saveCity: "setCurCity"
     }),
-    // navigateToCity() {
-    //   wx.navigateTo({ url: "/pages/chooseCity/chooseCity" });
-    // },
-    // navigateToSearch() {
-    //   wx.navigateTo({ url: "/pages/search/search" });
-    // },
     showPop() {
       this.show = true;
     },

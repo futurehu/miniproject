@@ -1,5 +1,6 @@
 <template>
   <div id="Comment">
+    <!-- 评论内容组件 -->
     <div class="comment-item">
       <div class="my-pic hw-ver-h hw-box">
         <img

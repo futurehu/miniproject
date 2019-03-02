@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -57,6 +57,13 @@
 					"id": 3,
 					"name": "评论页面",
 					"pathName": "pages/userComment/userComment",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择城市页面",
+					"pathName": "pages/chooseCity/chooseCity",
 					"query": "",
 					"scene": null
 				}

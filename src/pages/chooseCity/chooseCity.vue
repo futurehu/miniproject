@@ -1,9 +1,6 @@
 <template>
   <div id="ChooseCity">
-    <City
-      @changeCity='changeCity'
-      :cur_city='cur_city'
-    ></City>
+    <City @changeCity="changeCity" :cur_city="cur_city"></City>
   </div>
 </template>
 
@@ -26,8 +23,8 @@ export default {
   methods: {
     changeCity(city) {
       console.log("子组件传的", city);
-      this.$store.commit("setCurCity",city)
-      this.$backBeaforWin() //返回上一级
+      this.$store.commit("setCurCity", city);
+      this.$backBeaforWin(); //返回上一级
     }
   },
   mounted() {

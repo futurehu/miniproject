@@ -1,14 +1,15 @@
 import { baseUrl } from './config';
-export function request(url, method = 'GET', data, header = {}) {
+export function request(url, method = 'GET', data, header = { 'Content-Type': 'json' }) {
   return new Promise((resolve, reject) => {
     wx.showLoading({ title: '玩命加载中...' })
     wx.request({
       url: baseUrl + url,
       method,
       data,
-      header: { 'Content-Type': 'json' },
+      header,
       success: function (res) {
         if (res.statusCode === 200) {
+
           resolve(res.data)
         } else {
           console.log('发生未知错误!')
