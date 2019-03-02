@@ -1,13 +1,15 @@
 <template>
   <div id="userComment">
     <div class="comment-tab">
-      <span>全部(6)</span>
-      <span>晒图(3)</span>
-      <span>低分(1)</span>
-      <span>最新(0)</span>
+      <span
+        v-for="(tab,index) in comment_tab "
+        :key="index"
+        @click="clickTab(index)"
+        :class="{'text-active':index==cur_index}"
+      >{{tab}}</span>
     </div>
     <!-- 不同tab下的评论 -->
-    <swiper :duration="500" style="height:calc(94vh)">
+    <swiper :duration="500" style="height:calc(94vh)" :current='cur_index' @change="bindchange">
       <!-- 全部评论 -->
       <swiper-item>
         <scroll-view scroll-y scroll-top="0" style="height:calc(100vh)">
@@ -17,11 +19,29 @@
         </scroll-view>
       </swiper-item>
       <!-- 晒图评论 -->
-      <swiper-item>晒图评论</swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y scroll-top="0" style="height:calc(100vh)">
+          <div class="comment-container" v-for="(val,index) in imgComments" :key="index">
+            <Comment :comments="val"></Comment>
+          </div>
+        </scroll-view>
+      </swiper-item>
       <!-- 低分评论 -->
-      <swiper-item>低分评论</swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y scroll-top="0" style="height:calc(100vh)">
+          <div class="comment-container" v-for="(val,index) in lowScroeComments" :key="index">
+            <Comment :comments="val"></Comment>
+          </div>
+        </scroll-view>
+      </swiper-item>
       <!-- 最新评论 -->
-      <swiper-item>最新评论</swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y scroll-top="0" style="height:calc(100vh)">
+          <div class="comment-container" v-for="(val,index) in lastComments" :key="index">
+            <Comment :comments="val"></Comment>
+          </div>
+        </scroll-view>
+      </swiper-item>
     </swiper>
   </div>
 </template>
@@ -78,7 +98,7 @@ export default {
           header:
             "https://p0.meituan.net/122.74/mmc/35ad1f9253761ea6ff822b5e659f234f3758.png",
           name: "smsaikyo",
-          time: "2018-04-13",
+          time: "2019-03-1",
           star: "3.8",
           say: "真的不错呢【口味】【环境】【服务】",
           imgs: []
@@ -105,8 +125,49 @@ export default {
             "菜品一般，团购就不给开发票，投诉到底我就不信了。最搞笑的就是用餐当中房顶漏水！",
           imgs: []
         }
-      ]
+      ],
+      imgComments: [],
+      lowScroeComments: [],
+      lastComments: [],
+      cur_index: 0 //默认高亮
     };
+  },
+  methods: {
+    // 初始化不同的评论类型
+    setComments() {
+      this.imgComments = this.allComments.filter(item => {
+        return item.imgs.length > 0;
+      });
+      this.lowScroeComments = this.allComments.filter(item => {
+        //  item.star|0 评分取整
+        return (item.star | 0) < 3;
+      });
+      // 最新评论 三天之内的
+      this.lastComments = this.allComments.filter(item => {
+        return this.compareTime(item.time);
+      });
+      // 初始化tab栏
+      this.comment_tab[0] = `全部(${this.allComments.length})`;
+      this.comment_tab[1] = `晒图(${this.imgComments.length})`;
+      this.comment_tab[2] = `低分(${this.lowScroeComments.length})`;
+      this.comment_tab[3] = `最新(${this.lastComments.length})`;
+      // console.log('comment_tab',this.comment_tab);
+    },
+    compareTime(time) {
+      const compare = new Date(time).getTime();
+      const recently = 86400000 * 3; //定义三天之内
+      return new Date().getTime() - compare <= recently; //返回bool
+    },
+    clickTab(curIndex) {
+      this.cur_index = curIndex;
+    },
+    bindchange(e){
+      console.log('索引改变',e);
+      this.cur_index=e.target.current;
+    }
+  },
+  mounted() {
+    this.setComments();
   },
   onShow() {}
 };
@@ -119,11 +180,13 @@ export default {
 }
 .comment-tab {
   display: flex;
-  padding: 2vw 3vw;
+  padding: 0vw 3vw;
   border-bottom: 1px solid #ddd;
   span {
+    display: block;
     flex: 1;
     text-align: center;
+    padding: 2vw 0;
   }
 }
 </style>
